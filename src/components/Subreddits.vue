@@ -7,9 +7,8 @@
     	{{ post.data.title}}
       </li>
     </ul>
-    <button class='btn btn-success btn-sm ' @click='backtoTop()'>Back To Top</button>
+    <button class='btn btn-success btn-sm mybtn' @click='backtoTop()'>Back To Top</button>
   </div>
-
 </template>
 
 <script>
@@ -18,15 +17,11 @@
 	export default {
 		name:'subreddits',
 		props: ['category'],
-
 		data() {
 			return {
 			    subreddits:[],
-
-
-         }//return
-
-       },//data()
+      }//return
+    },//data()
     components: {
       subreddit
     },
@@ -36,43 +31,36 @@
         value = value.toString();
         return value.charAt(0).toUpperCase() + value.slice(1);
       }
-   },
+    },
    methods:{
      backtoTop: function() {
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0;
+       document.body.scrollTop = 0;
+       document.documentElement.scrollTop = 0;
      }
    },
-
-    created: function() {
-    console.log('Created Ran..');
-    this.$http.get("https://www.reddit.com/r/" + this.category + "/top.json?limit=5")
-      .then((response) => {
-        this.subreddits = response.data.data.children;
-        console.log("response",response);
-        console.log("response.data",response.data);
-        console.log("response.data.data.children",response.data.data.children);
-
-        }, error => {
-        console.error(error);
-      });//.then
-
-    }//created
-
-
+   created: function() {
+     console.log('Created Ran..');
+     this.$http.get("https://www.reddit.com/r/" + this.category + "/top.json?limit=5")
+     .then((response) => {
+      this.subreddits = response.data.data.children;
+      console.log("response",response);
+      console.log("response.data",response.data);
+      console.log("response.data.data.children",response.data.data.children);
+   }, error => {
+      console.error(error);
+   });//.then
+   }//created
   }//export default
-
 </script>
 <style>
   .container {
   	max-width:600px;
   	font-family: Arial;
-  	/* background:#fff; */
-    background-color:lightgreen;
-  	margin: 30px auto;
+  	background:#fff;
+    margin: 30px auto;
   	padding:20px;
     color:#666;
-
+    border: 5px solid #218838;
     box-shadow:0 0 3px #ccc;
   }
   .subreddits {
@@ -83,27 +71,36 @@
   	font-size:20px;
   	margin-bottom: 10px;
   	margin-top:0;
-  	/* color:#ccc; */
-    color:lightcoral;
+    color:#333;
+    border:none;
+    box-shadow:0 0 3px #e6a1a1;
+    transition:all 4s ease-in-out 2s;
+  }
+  .subreddits h3:hover {
+    transform: scale(1.1);
+    font-size: 34px;
+    color:#ea685d;
   }
   .subreddits .item-list {
   	list-style:none;
   	padding-top:20px;
     padding-bottom:20px;
     border-top: 1px solid #ccc;
-
   }
   .subreddits .item-list li {
     padding-top:10px;
   	padding-bottom: 20px;
     font-size:14px;
   	color:#333;
-    /* color:lightcoral; */
   }
-  /* .subreddits #back_to_top {
-    background-color:forestgreen;
-    border-radius:3px;
-  } */
-
-
-</style>
+  .subreddits .mybtn {
+    background-color: #ea685d;
+    transition: all 4s ;
+    transition-timing-function: ease-in-out 2s;
+    transition-delay: 2s;
+  }
+  .subreddits .mybtn:hover {
+    transform: scale(1.1);
+    width:150px;
+  }
+  </style>

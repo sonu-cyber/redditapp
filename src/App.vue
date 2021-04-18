@@ -8,7 +8,7 @@
     <subreddits category="science"></subreddits>
     <subreddits category="space"></subreddits>
     <subreddits category="nasa"></subreddits>
-    <subreddits category="movies"></subreddits>
+    <subreddits category="web_design"></subreddits>
   </div>
 </template>
 
@@ -16,14 +16,12 @@
 import subreddits from './components/Subreddits';
 import subreddit from './components/Subreddit'
 
-
 export default {
   name: 'App',
   components: {
     subreddits,
     subreddit
   }
-
 }
 </script>
 
@@ -40,12 +38,8 @@ export default {
     text-align: center;
    }
    header {
-    background:lightcoral;
+    background: #ea685d;
     padding:20px;
     color:#fff;
    }
-
-
-
-
 </style>
